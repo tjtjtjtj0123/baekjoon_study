@@ -1,6 +1,6 @@
 package algorism;
 
-public class test {
+public class Gym_suit {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
