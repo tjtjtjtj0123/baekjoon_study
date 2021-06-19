@@ -16,22 +16,26 @@ public class truck_crossing_the_bridge {
         Arrays.fill(st, 0);
         int i = 0;
         while(i < truck_weights.length){
-            int total = IntStream.of(st).sum();
-            if (st[st.length-1] != 0)
-                answer++;
-            for (int j = st.length-2; j >=0; j--){
-                if (st[j] == 0)
-                    continue;
+        	int flag = 0;
+        	if (st[st.length-1] != 0)
+        		flag = 1;
+            for (int j = st.length-2; j >=0; j--) {
+            	if (st[j] != 0)
+            		flag = 1;
                 st[j+1] = st[j];
-                answer++;
             }
+            st[0] = 0;
+            int total = IntStream.of(st).sum();
             if (total+truck_weights[i] <= weight){
                 st[0] = truck_weights[i];
+                answer++;
                 i++;
+                flag = 0;
             }
-            else
-                st[0] = 0;
+            answer += flag;
         }
+        if (IntStream.of(st).sum() != 0)
+        	answer += st.length;
         return answer;
     }
 
